@@ -1,0 +1,356 @@
+#include "advancePart3.h"
+
+
+/***********************************************************************************************************
+ * @brief   Static variables in classes 
+ *          
+ */
+void CallStaticVariablesInclasses(void)
+{
+    PrintClass<int> myPrintClassI1;
+    myPrintClassI1.PrintVal();
+
+    PrintClass<int> myPrintClassI2;
+    myPrintClassI2.PrintVal();
+
+    PrintClass<float> myPrintClassF;
+    myPrintClassF.PrintVal();
+}
+//==========================================================================================================
+
+
+/***********************************************************************************************************
+ * @brief   What is this pointer in C++
+ *          1. Passed as hidden argument to non static memeber function
+ *          2. It a const pointer whitch holds the addr of current object [type*const this]
+ *          3. If memeber function is cosnt then, this pointers type becomes [const type * const this]
+ */
+void BaseClass01::SetValue(int x)   { _x = x;}
+// void SetValue(Base* const this, int x);
+
+int BaseClass01::GetValue(void)     { return _x;}
+//int GetValue(const Base* const this) { return this->_x;}
+
+void CallClassThisPointer_x01(void)
+{
+    BaseClass01 myBaseClass01;
+    myBaseClass01.SetValue(10);  
+    // SetValue(&myBaseClass01, 10); 
+    // GetValue(&myBaseClass01);
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   How to assign any object to premitive data types (uint8_t ... int64_t, float etc)
+ *          Then operator uint64_t(...) need to be used and allow conversion
+ */
+
+void CallBaseTypeChange(void)
+{
+    BaseTypeChange myBaseTypeChange(-1);
+    uint64_t temp1;
+    int64_t temp2;
+
+    temp1 = myBaseTypeChange;
+    temp2 = myBaseTypeChange;
+
+    std::cout << "Temp1:= " << temp1 << std::endl;
+    std::cout << "Temp1:= " << std::hex << temp1 << std::endl;
+
+    std::cout << "Temp2:= " << temp2 << std::endl;
+    std::cout << "Temp2:= " << std::hex << temp2 << std::endl;
+}
+
+/***********************************************************************************************************
+ * @brief   How to call some function before main()
+ * 
+ *          With use of global variable or static data memeber of class
+ */
+// int FunBeforeMain(void)    
+// {   std::cout << "FunBeforeMain()" <<  std::endl; 
+//     return 0;   }
+
+// class BaseBeforeMain
+// {
+// public:
+//     static int sVaribale;
+
+//     BaseBeforeMain(void)    {FunBeforeMain();}
+// };
+
+// BaseBeforeMain  myBaseBeforeMain();
+// int BaseBeforeMain::sVaribale = FunBeforeMain();
+
+// int main()
+// {
+//     std::cout << "main()" <<  std::endl; 
+//     return 0;
+// }
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   How to check two diffrent object belong to the same class
+ * 
+ *          By using typeid from #include <typeinfo> nd pointer addr
+ */
+void CallClassTypeChack(void)
+{
+    ClassType_AA myClassType_AA11;
+    ClassType_AA myClassType_AA22;
+
+    ClassType_BB myClassType_BB11;
+    ClassType_BB myClassType_BB22;
+/* 
+    if(typeid(myClassType_AA11) == typeid(myClassType_AA22))
+    {
+        std::cout << "typeid() the same " <<  std::endl;
+    }
+    else
+    {
+        std::cout << "typeid() diffrent " <<  std::endl;
+    }
+
+    if(typeid(myClassType_AA11) == typeid(myClassType_BB11))
+    {// Check what class it belong to
+        std::cout << "typeid() the same " <<  std::endl;
+    }
+    else
+    {
+        std::cout << "typeid() diffrent " <<  std::endl;
+    }  */
+
+    if(&myClassType_AA11 == &myClassType_AA22)
+    {// Check the memory addr of a instance
+        std::cout << "typeid() the same " <<  std::endl;
+    }
+    else
+    {
+        std::cout << "typeid() diffrent " <<  std::endl;
+    }
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   How to overload pre and post operator in C++
+ * 
+ *          (myClassOverloadElement++).Print() - Data is updated after this line
+ * 
+ *          (++myClassOverloadElement).Print() - data is updated before this line
+ */
+
+void CallOverloadElement(void)
+{
+    ClassOverloadElement myClassOverloadElement(0x00);
+
+    std::cout << "value after init " <<  std::endl;
+    myClassOverloadElement.Print();
+
+    std::cout << "=================================" <<  std::endl;
+
+    std::cout << "value after (myClassOverloadElement++).Print();" <<  std::endl;
+    (myClassOverloadElement++).Print();
+    std::cout << " next print " <<  std::endl;
+    myClassOverloadElement.Print();
+
+    std::cout << "=================================" <<  std::endl;
+
+    std::cout << "value after (++myClassOverloadElement).Print();" <<  std::endl;
+    (++myClassOverloadElement).Print();
+    std::cout << " next print " <<  std::endl;
+    myClassOverloadElement.Print();
+
+    return;
+}
+void CallTestPostAndPreUpdatedValue(void)
+{
+    uint16_t i,j, k;
+    j = 0; k = 0;
+    std::cout << "Post and pre increment test" <<  std::endl;
+    for (i = 0; i < 0x07; i++)
+    {
+        putchar('j'); putchar(' '); putchar(j++ + 0x30); putchar(' ');
+        putchar('k'); putchar(' '); putchar(++k + 0x30); putchar(' ');
+        putchar('\n');
+    }putchar('\n');
+
+    std::cout << "while ((j++) < 0x7)" <<  std::endl;
+    j = 0x00; k = 0x00;
+
+    while ((j++) < 0x7)
+    {
+        putchar(j + 0x30);
+        putchar(' ');
+    }putchar('\n');
+
+    std::cout << "while ((++k) < 0x7)" <<  std::endl;
+    while ((++k) < 0x7)
+    {
+        putchar(k + 0x30);
+        putchar(' ');
+    }putchar('\n');
+}
+//==========================================================================================================
+
+
+/***********************************************************************************************************
+ * @brief   How to print smething N times without using loop or recursion in C++
+ * 
+ *          Constructor will be called PRINT_N_TIMES times because class is constructed
+ */
+
+void CallBasePrintNtimes(void)
+{
+    BasePrintNtimes myBasePrintNtimes[PRINT_N_TIMES];
+
+
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Stop from assign and copy object:
+ * 
+ *          1. Keep copy constructor and assigment operator as privatein clas
+ *          2. Inherit dummy class with private copy constructor and assigment operator
+ *          3. Delete copy constructor and assigment operator from class
+ */
+void CallBaseStopCopy(void)
+{
+    BaseStopCopy myBaseStopCopy11(11);
+    BaseStopCopy myBaseStopCopy22(22);
+
+    BaseCopy myBasePrintNtimes11(11);
+    BaseCopy myBasePrintNtimes22();
+
+    BaseStopCopyDeleteConstr myBaseStopCopyDeleteConstr11(11);
+    BaseStopCopyDeleteConstr myBaseStopCopyDeleteConstr22(22);
+
+    // 1.
+    //myBaseStopCopy11 = myBaseStopCopy22;
+
+    // 2.
+    //myBasePrintNtimes1 = myBasePrintNtimes2;
+
+    // 3.
+    //myBaseStopCopyDeleteConstr11 = myBaseStopCopyDeleteConstr22;
+
+    std::cout << "Stop copy test" <<  std::endl;
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Stop from from takig addr of my object
+ * 
+ *          1. overload & operator and keep it private
+ *          2. Delete  * operator from class
+ */
+
+void CallBaseStopFromADDRMth1(void)
+{
+    BaseStopFromADDRMth1  myBaseStopFromADDRMth1(11);
+    BaseStopFromADDRMth1* pBaseStopFromADDRMth1;
+
+    // With private we have error
+    //pBaseStopFromADDRMth1 = &myBaseStopFromADDRMth1;
+
+    //std::cout << "ADDR:= " << std::hex << &myBaseStopFromADDR << std::endl;
+    //std::cout << "ADDR:= " << std::hex << pBaseStopFromADDR << std::endl;
+}
+
+void CallBaseStopFromADDRMth2(void)
+{
+    BaseStopFromADDRMth2 myBaseStopFromADDRMth2(22);
+    BaseStopFromADDRMth2* pBaseStopFromADDRMth2;
+
+    //pBaseStopFromADDRMth2 = &myBaseStopFromADDRMth2;
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Stop from from inheritance from my class
+ * 
+ *          1. Use final keyword, dont use any other tweak to achieve that
+ *          2. Just use final keyword
+ */
+void CallStopFromInheritance(void)
+{
+    DerivedFromBaseInheritance myDerivedFromBaseInheritance(11, 22);
+
+
+
+    std::cout << "Stop inheritance test" <<  std::endl;
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   How to write own atoi function
+ * 
+ *          Convert string to integer
+ */
+uint16_t MyAtoi(const char* str, uint8_t maxControl)
+{
+    uint16_t value, sign;
+    uint8_t i;
+
+
+    if(str[0] == '-')
+    {   sign = 0xFFFF;
+        i = 1;}
+    else
+    {   sign = 0x0001;
+        i = 0;}
+
+    value = 0;
+    while ((i < maxControl) && (str[i] != '\0'))
+    {
+        value = value*10 + (str[i] - 0x30);
+        i++;
+    }
+
+    if(i == maxControl) return 0xFFFF; // Error
+    
+    return value * sign;
+}
+
+uint16_t ClasicAtoi(const char* str)
+{
+    uint16_t value, factor;
+    uint8_t i = 0;
+
+    value = 0;
+    i = 0;
+
+    for(; str[i] != '\0'; ++i)
+    {
+        value = value*10 + str[i] - '0';
+    }
+    
+    return value;
+}
+void CallAtoi(void)
+{
+    const char pStr[] = {"1024"};
+
+    uint16_t temp = MyAtoi(pStr, 6);
+
+    std::cout << "String converted to integer method1: " << temp <<  std::endl;
+
+    temp = ClasicAtoi(pStr);
+    std::cout << "String converted to integer method2: " << temp <<  std::endl;
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   How vector work internaly
+ */
+void CallWorkingOfVestors(void)
+{
+    std::vector<uint64_t> myVector;
+
+    std::cout << "myVector.size() " << myVector.size() <<  std::endl;
+    std::cout << "myVector.capacity() " << myVector.capacity() <<  std::endl;
+
+    myVector.push_back(0x11);
+    std::cout << "myVector.size() " << myVector.size() <<  std::endl;
+    std::cout << "myVector.capacity() " << myVector.capacity() <<  std::endl;
+}// 3,14
+//==========================================================================================================
