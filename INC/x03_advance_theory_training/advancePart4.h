@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <typeinfo>
 #include <vector>
+#include <string.h>
 
 /***********************************************************************************************************
  * @brief   Is it posible to call constructor and deconstructor by your self?
@@ -162,29 +163,89 @@ void CallReinterpretedCast2(void);
 //==========================================================================================================
 
 /***********************************************************************************************************
- * @brief   
+ * @brief   Static cast in C++
  * 
+ *          It performs implicit conversion between types 
+ *          This will check in compile time;
+ * 
+ *          If constructor has one parameter then asigning one parameter to class object cause to call donctructor
+ * 
+ *          Use for all upcast but never use for confuzed  down cast
+ * 
+ *          For compabitility type conversion 
+ *          For conversion operators and conversion constructors
+ *          To avoid unrelated pointer conversion
+ *          Used for uppcast but never for don cast
+ *          Intenstion are more clear on C++
+ *          Erros found in compile time
  */
+void CallStaticCast1(void);
 
+class Convert
+{
+    int _x;
+public:
+    Convert(int x=0): _x{x} 
+    {   std::cout << "Convert constructor " << x <<   std::endl; }
+
+    operator std::string (void)  
+    {   std::cout << "Convert  std::to_string() " << _x << std::endl;    
+        return std::to_string(_x); }
+
+};
+void CallStaticCast2(void);
+void CallStaticCast3(void);
+void CallStaticCast4(void);
+
+class BaseCastTest  {;};
+class DerivedCastTest11: public BaseCastTest  {;};
+class DerivedCastTest22: public BaseCastTest  {;};
+void CallStaticCast5(void);
+void CallStaticCast6(void);
 //==========================================================================================================
 
 /***********************************************************************************************************
- * @brief   
+ * @brief   What is structular padding and packing in C++
+ *          This is way to speed up the cpu
  * 
+ *          In this case with   #pragma pack(1) sizeof(someStruct_t) = less
+ *          With case of        #pragma pack(0) sizeof(someStruct_t) = more
+ * 
+ *          uint8_t  can be stored at multiple of 1 Byte
+ *          uint16_t can be stored at multiple of 2 Byte
+ *          uint32_t can be stored at multiple of 4 Byte
+ *          uint64_t can be stored at multiple of 8 Byte
+ * 
+ *          1 WORD is 4 Byte in 32 bit procesor
+ *          1 WORD is 8 Byte in 64 bit procesor
  */
+//#pragma pack(1) // Disable padding
+typedef struct 
+{// This will ocupied 16 Bytes
+    uint8_t     B;
+    uint64_t    QW;
+}someStruct11_t;
 
+typedef struct 
+{// This will ocupied 16 Bytes also
+    uint8_t     B[8];
+    uint64_t    QW;
+}someStruct22_t;
+
+void CallStructularPadding1(void);
+
+typedef struct 
+{// sizeof(someStruct33_t) = 16
+    uint32_t    DW;
+    uint64_t    QW;
+}someStruct33_t;
+
+typedef struct 
+{// sizeof(someStruct44_t) = 24
+    uint32_t a;              // sizeof(uint32_t) = 4 + 4(paddint)
+    someStruct33_t  somedat; // sizeof(someStruct33_t) = 16
+}someStruct44_t;
+
+void CallStructularPadding2(void);
 //==========================================================================================================
 
-/***********************************************************************************************************
- * @brief   
- * 
- */
-
-//==========================================================================================================
-
-/***********************************************************************************************************
- * @brief   
- * 
- */
-
-//==========================================================================================================

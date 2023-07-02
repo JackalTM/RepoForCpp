@@ -157,7 +157,7 @@ void CallReinterpretedCast1(void)
     pParanga->Swing(1);
 }
 void CallReinterpretedCast2(void)
-{
+{//#pragma pack(0) // Enable padding then empty spaces are placed
     someTool_t tTool;
 
     tTool.x = 0x1100;
@@ -176,5 +176,123 @@ void CallReinterpretedCast2(void)
     std::cout << "tTool.y = " << std::hex << tTool.y <<   std::endl;
     std::cout << "tTool.z = " << std::hex << tTool.z <<   std::endl;
     std::cout << "tTool.volume = " << std::hex << tTool.volume <<   std::endl;
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Static cast in C++
+ * 
+ *          It performs implicit conversion between types 
+ *          This will check in compile time;
+ * 
+ *          If constructor has one parameter then asigning one parameter to class object cause to call donctructor
+ * 
+ *          Use for all upcast but never use for confuzed  down cast
+ * 
+ *          For compabitility type conversion 
+ *          For conversion operators and conversion constructors
+ *          To avoid unrelated pointer conversion
+ *          Used for uppcast but never for don cast
+ *          Intenstion are more clear on C++
+ *          Erros found in compile time
+ */
+void CallStaticCast1(void)
+{
+    uint64_t quadripleWord;
+    uint32_t doubleWord;
+
+    quadripleWord = -1;
+    doubleWord = static_cast<uint32_t>(quadripleWord);
+
+    std::cout << "uint64_t quadripleWord = " << std::hex << quadripleWord <<   std::endl;
+    std::cout << "uint32_t doubleWord    = " << std::hex << doubleWord <<   std::endl;
+}
+void CallStaticCast2(void)
+{
+    Convert myConvert(7);
+    std::string myStr1 = myConvert;
+
+    myConvert = 20;
+    std::string myStr2 = static_cast<std::string>(myConvert);
+
+    myConvert = static_cast<int>(30);
+
+    std::cout << "std::string myStr1 = myConvert " << myStr1 <<   std::endl;
+    std::cout << "std::string myStr2 = static_cast<std::string>(myConvert) " << myStr1 << std::endl;
+
+    std::cout << "myConvert = static_cast<int>(30) " << std::string(myConvert) <<   std::endl;
+}
+void CallStaticCast3(void)
+{
+    uint8_t byte;
+    uint32_t dWord;
+
+    uint8_t* pByte;
+    uint32_t* pDWord;
+
+    pByte = (uint8_t*)(&dWord); // C style asting
+
+    // Dangerous cast!!!
+    pDWord = (uint32_t*)(&byte); // Pass by compile time but fail at run time
+
+
+    pByte = static_cast<uint8_t*>((uint8_t*)(&dWord)); //C++ style casting
+    //pDWord = static_cast<uint32_t*>(&byte); // Fail in compile time then is safe
+}
+void CallStaticCast4(void)
+{
+
+}
+void CallStaticCast5(void)
+{
+    DerivedCastTest11 myDerivedCastTest11;
+    DerivedCastTest22 myDerivedCastTest22;
+
+    BaseCastTest* pBaseCastTest11 = static_cast<BaseCastTest*>(&myDerivedCastTest11);
+    BaseCastTest* pBaseCastTest22 = static_cast<BaseCastTest*>(&myDerivedCastTest22);
+
+    // This is confuzing
+    DerivedCastTest11* pDerivedCastTest11 = static_cast<DerivedCastTest11*>(pBaseCastTest11);
+    DerivedCastTest22* pDerivedCastTest22 = static_cast<DerivedCastTest22*>(pBaseCastTest22);
+}
+void CallStaticCast6(void)
+{
+    uint8_t byte;
+    void* pVoid;
+    uint8_t* pByte;
+
+    pVoid = static_cast<void*>(&byte);
+    pByte = static_cast<uint8_t*>(pVoid);
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is structular padding and packing in C++
+ *          This is way to speed up the cpu
+ * 
+ *          In this case with   #pragma pack(1) sizeof(someStruct_t) = less
+ *          With case of        #pragma pack(0) sizeof(someStruct_t) = more
+ * 
+ *          uint8_t  can be stored at multiple of 1 Byte
+ *          uint16_t can be stored at multiple of 2 Byte
+ *          uint32_t can be stored at multiple of 4 Byte
+ *          uint64_t can be stored at multiple of 8 Byte
+ * 
+ *          1 WORD is 4 Byte in 32 bit procesor
+ *          1 WORD is 8 Byte in 64 bit procesor
+ */
+void CallStructularPadding1(void)
+{
+    uint16_t lenght;
+    lenght = sizeof(someStruct11_t);
+
+    std::cout << "sizeof(someStruct_t) = " << lenght <<   std::endl;
+}
+void CallStructularPadding2(void)
+{
+    uint16_t lenght;
+    lenght = sizeof(someStruct44_t);
+
+    std::cout << "sizeof(someStruct_t) = " << lenght <<   std::endl;
 }
 //==========================================================================================================
