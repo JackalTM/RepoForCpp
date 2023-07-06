@@ -1,4 +1,5 @@
 #include "advancePart4.h"
+#ifdef _ADVANCE_PART_4_H
 
 /***********************************************************************************************************
  * @brief   Is it posible to call constructor and deconstructor by your self?
@@ -296,3 +297,5 @@ void CallStructularPadding2(void)
     std::cout << "sizeof(someStruct_t) = " << lenght <<   std::endl;
 }
 //==========================================================================================================
+
+#endif // _ADVANCE_PART_4_H

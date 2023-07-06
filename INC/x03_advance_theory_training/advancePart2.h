@@ -1,3 +1,6 @@
+#include "_x03_include.h"
+#ifdef _ADVANCE_PART_2_H
+
 #include <stdio.h>
 #include <iostream>
 
@@ -203,3 +206,5 @@ public:
 void CallDeleteTest1(void);
 void CallDeleteTest2(void);
 //=====================================================================================
+
+#endif // _ADVANCE_PART_2_H

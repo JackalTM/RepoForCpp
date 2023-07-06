@@ -1,3 +1,6 @@
+#include "_x03_include.h"
+#ifdef _ADVANCE_PART_1_H
+
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
@@ -137,3 +140,5 @@ void CallVirtualFunctionsTest1(void);
 void CallVirtualFunctionsTest2(void);
 void CallPureVirtualFunctions(void);
 //=====================================================================================
+
+#endif // _ADVANCE_PART_1_H

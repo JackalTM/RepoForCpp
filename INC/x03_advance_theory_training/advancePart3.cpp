@@ -1,5 +1,5 @@
 #include "advancePart3.h"
-
+#ifdef _ADVANCE_PART_3_H
 
 /***********************************************************************************************************
  * @brief   Static variables in classes 
@@ -354,3 +354,5 @@ void CallWorkingOfVestors(void)
     std::cout << "myVector.capacity() " << myVector.capacity() <<  std::endl;
 }// 3,14
 //==========================================================================================================
+
+#endif // _ADVANCE_PART_3_H

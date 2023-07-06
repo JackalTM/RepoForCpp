@@ -1,4 +1,5 @@
 #include "advancePart1.h"
+#ifdef _ADVANCE_PART_1_H
 
 /**************************************************************************************
  * @brief   Test of a friendship in C++ 
@@ -252,3 +253,5 @@ void CallPureVirtualFunctions(void)
     pSword->Usage(7);
     pRifle->Usage(9);
 }
+
+#endif // _ADVANCE_PART_1_H

@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "DEFAULT BUILD TASK FOR C/C++: g++.exe build active file",
+            "command": "C:\\MinGW\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "${workspaceFolder}\\INC\\x00_RefFunctions\\*.h",
+                "${workspaceFolder}\\INC\\x00_RefFunctions\\*.cpp",
+                "${workspaceFolder}\\INC\\x01_CTF_class\\*.h",
+                "${workspaceFolder}\\INC\\x01_CTF_class\\*.cpp",
+                "${workspaceFolder}\\INC\\x02_InheritanceTest\\*.h",
+                "${workspaceFolder}\\INC\\x02_InheritanceTest\\*.cpp",
+                "${file}",
+                "-o",
+                "${workspaceFolder}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "C:\\MinGW\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "compiler: C:\\MinGW\\bin\\g++.exe"
+        }
+    ]
+}

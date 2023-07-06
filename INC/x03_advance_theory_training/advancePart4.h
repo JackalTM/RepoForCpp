@@ -1,3 +1,6 @@
+#include "_x03_include.h"
+#ifdef _ADVANCE_PART_4_H
+
 #include <stdio.h>
 #include <iostream>
 #include <stdint.h>
@@ -249,3 +252,4 @@ typedef struct
 void CallStructularPadding2(void);
 //==========================================================================================================
 
+#endif // _ADVANCE_PART_4_H
