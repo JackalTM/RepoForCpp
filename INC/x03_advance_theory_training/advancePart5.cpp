@@ -180,4 +180,83 @@ void CallTestPrintfScanf(void)
 }
 //==========================================================================================================
 
+/***********************************************************************************************************
+ * @brief   What is RVO and NRVO in C++?
+ * 
+ *          It stands for return value optimazition and named return value optimazition
+ * 
+ *          -fno-elide-constructor allow unesesary call of constructor
+ */
+Base_RVO_NRVO FunctionOf_RVO_NRVO(void)
+{
+    return Base_RVO_NRVO();
+}
+
+void Call_RVO_NRVO(void)
+{
+    Base_RVO_NRVO myBase_RVO_NRVO = FunctionOf_RVO_NRVO();
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is the best place to use enum in C++
+ *          
+ *          Enum is used in some limited sets of values
+ *          Function can take one values from set like parameter input
+ */
+void CallEnumTestFunc(void)
+{
+    MAIN_COLORS myMAIN_COLORS = MAIN_COLORS::BLU;
+
+    switch (myMAIN_COLORS)
+    {
+    case MAIN_COLORS::RED: 
+        std::cout << "RED" << std::endl;   break;
+
+    case MAIN_COLORS::GRN: 
+        std::cout << "RED" << std::endl;   break;
+
+    case MAIN_COLORS::BLU: 
+        std::cout << "RED" << std::endl;   break;
+    
+    default:
+        break;
+    }
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is the diffrence between struct and class in C++
+ *  
+ *          Class memebers are private by dafault
+ *          Struct memebers are public by default
+ * 
+ *          If class is derivef widhout specifer then it will be private
+ *          If struct is derived widhout specifer then it will be public
+ */
+void Call_classTestType_structTestType(void)
+{
+    structDerivedType myStructDerivedType;
+
+    myStructDerivedType.x = 0;
+    myStructDerivedType.y = 0;
+    myStructDerivedType.z = 0;
+
+    myStructDerivedType.a = 0;
+    myStructDerivedType.b = 0;
+    myStructDerivedType.c = 0;
+
+    classDrivedType myClassDrivedType;
+/*
+    myClassDrivedType.x = 0;
+    myClassDrivedType.y = 0;
+    myClassDrivedType.z = 0;
+
+    myClassDrivedType.a = 0;
+    myClassDrivedType.b = 0;
+    myClassDrivedType.c = 0;
+*/
+}
+//==========================================================================================================
+
 #endif // _ADVANCE_PART_5_H

@@ -160,4 +160,77 @@ void CallDelegationCOnstruction(void);
 void CallTestPrintfScanf(void);
 //==========================================================================================================
 
+/***********************************************************************************************************
+ * @brief   What is RVO and NRVO in C++?
+ * 
+ *          It stands for return value optimazition and named return value optimazition
+ */
+class Base_RVO_NRVO
+{
+    int X;
+public:
+    Base_RVO_NRVO(void) 
+    {   std::cout << "Constructor: Base_RVO_NRVO " << std::endl;    }
+
+    Base_RVO_NRVO(const Base_RVO_NRVO &) 
+    {   std::cout << "Copy Constructor: Base_RVO_NRVO " << std::endl;    }
+};
+Base_RVO_NRVO FunctionOf_RVO_NRVO(void);
+
+void Call_RVO_NRVO(void);
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is the best place to use enum in C++
+ *          
+ *          Enum is used in some limited sets of values
+ *          Function can take one values from set like parameter input
+ */
+enum class MAIN_COLORS { RED = 0x11U, GRN = 0x22U, BLU = 0x33U };
+void CallEnumTestFunc(void);
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is the diffrence between struct and class in C++
+ *  
+ *          Class memebers are private by dafault
+ *          Struct memebers are public by default
+ */
+class classBaseType
+{// Default it is private
+    int x;
+    int y;
+    int z;
+};
+
+class classDrivedType: classBaseType
+{// Default it is private
+    int a;
+    int b;
+    int c;
+};
+
+struct structBaseType
+{// Default it is public
+    int x;
+    int y;
+    int z;
+};
+struct structDerivedType: structBaseType
+{// Default it is public
+    int a;
+    int b;
+    int c;
+};
+
+void Call_classTestType_structTestType(void);
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is the order of functionevaluation in C++
+ *  5,32
+ */
+
+//==========================================================================================================
+
 #endif // _ADVANCE_PART_5_H
