@@ -90,7 +90,6 @@ void CallExplicitcast(void)
 
     return;
 }
-// 1,02
 //=====================================================================================
 
 /**************************************************************************************
@@ -123,40 +122,6 @@ void CallExternCinCpp(void)
  *          It gives proper code analisis power
  * 
  */
-FunctionChainingClass&  FunctionChainingClass::SetParameterA(int inA)   
-{// Reference 
-    _valueA = inA;
-    return *this;
-}
-FunctionChainingClass&  FunctionChainingClass::SetParameterB(int inB)   
-{// Reference 
-    _valueB = inB;
-    return *this;
-}
-
-FunctionChainingClass*  FunctionChainingClass::SetParameterX(int inX)
-{// Pointer 
-    _valueX = inX;
-    return this;
-}
-FunctionChainingClass*  FunctionChainingClass::SetParameterY(int inY)
-{// Pointer
-    _valueY = inY;
-    return this;
-}
-FunctionChainingClass*  FunctionChainingClass::SetParameterZ(int inZ)
-{// Pointer
-    _valueZ = inZ;
-    return this;
-}
-
-void FunctionChainingClass::Print(void)
-{
-std::cout << "Parameters value: " << std::endl;
-std::cout << " A= " << std::hex << _valueA << ", B= " << std::hex << _valueB << std::endl;
-std::cout << " X= " << std::hex << _valueX << ", Y= " << std::hex << _valueY << ", Z= " << std::hex << _valueZ << std::endl;
-}
-
 void CallFunctionChaining(void)
 {
     FunctionChainingClass myFunChain;
@@ -181,21 +146,6 @@ void CallFunctionChaining(void)
  *          To inlock function hidding:
  *          using FunHiddingBase::Funct;
  */
-void FunHiddingBase::Funct(void)
-{
-    std::cout << "Base class void" << std::endl;
-}
-unsigned int FunHiddingBase::Funct(unsigned int i, unsigned int j)
-{
-    std::cout << "Base class i, j" << std::endl;
-    return 0;
-}
-unsigned int FunHiddingDerived11::Funct(char c)
-{
-    std::cout << "Derived class char" << std::endl;
-    return 0;
-}
-
 void CallFunHidding(void)
 {
     FunHiddingDerived11 Derived;

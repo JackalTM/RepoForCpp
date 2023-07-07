@@ -193,7 +193,7 @@ public:
 
     operator std::string (void)  
     {   std::cout << "Convert  std::to_string() " << _x << std::endl;    
-        return std::to_string(_x); }
+        return "str"; }
 
 };
 void CallStaticCast2(void);

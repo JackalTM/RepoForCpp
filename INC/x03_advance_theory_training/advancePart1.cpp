@@ -129,7 +129,7 @@ auto add(T_1 a, T_2 b)->decltype(a + b)
 {   return a + b;}
 void CallDecltype(void)
 {
-    std::cout << "T_2 add(T_1 a, T_2) " << add(1, 1.8) << std::endl; 
+    std::cout << "T_1 add(T_1 a, T_2) " << add(1, 1.8) << std::endl; 
     std::cout << "T_2 add(T_1 a, T_2) " << add(1.8, 1) << std::endl; 
 }
 //=====================================================================================

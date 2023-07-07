@@ -79,6 +79,7 @@ void CallVirtualDestructor(void);
  *          When reference is initialized
  *          When class is asigning inside class
  */
+typedef std::tuple<int, int> bothVals_tuple;
 class BaseListInitializer
 {
     const int _X;
@@ -87,6 +88,7 @@ public:
     BaseListInitializer(int& refSomeInt):           _X(0x00),   refSomeInt(refSomeInt)      { refSomeInt++;}
     BaseListInitializer(int x, int& refSomeInt):    _X(x),      refSomeInt(refSomeInt)      { refSomeInt++;}
 
+    int GetValue(void)  { return _X; }
     void Print(void) {  std::cout << "_X = " << _X << std::endl; }
 };
 
@@ -97,9 +99,15 @@ public:
     DerivedListInitializer(int y, int x, int& refSomeInt):  BaseListInitializer(x, refSomeInt), _Y(y) 
     {   std::cout << "DerivedListInitializer and BaseListInitializer" << std::endl; }
 
+    int GetValue(void)  { return _Y; }
+    bothVals_tuple GetBothValues(void) { return std::make_tuple( _Y, BaseListInitializer::GetValue()); }
+
     void Print(void) 
-    {   std::cout << "_Y = " << _Y << std::endl; 
-        BaseListInitializer::Print();   }
+    {   std::cout << "_Y = " << _Y << std::endl; }
+
+    void PrintBoth(void)    
+    {   Print(); 
+        BaseListInitializer::Print(); }
 };
 void CallListInitializer(void);
 //==========================================================================================================
@@ -109,7 +117,47 @@ void CallListInitializer(void);
  *          It overalocated memory which some times could be very bad in terms of performance
  *          When ever capacity of vecors it copy element from previous to new vector 
  */
-void CallDrawbackOfVectors(void);// 5,10
+void CallDrawbackOfVectors(void);
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is Constructor Delegation in C++
+ * 
+ *          Constructior is delegated to bottom constructor
+ *          If the constructor has heavy code inside to prevent code bloating constructor is delegated to main one
+ */
+class BaseConstrDelegation
+{
+    int _x, _y;
+    int _xy;
+
+public:
+    // Both delegated constructors
+    BaseConstrDelegation(void):             BaseConstrDelegation(0, 0) {;}
+    BaseConstrDelegation(int x):            BaseConstrDelegation(x, 0) {;}
+    // True constructor
+    BaseConstrDelegation(int x, int y):     _x(x), _y(y) 
+    {//  Example of some inside calculation that are present.
+        int temp = 1;
+        temp = (x << 2) + temp;
+        temp = (y << 2) + temp;
+        _xy = temp;
+    }
+
+    void Print(void)    
+    {   std::cout << " _x= " << _x << "_y= " << _y << std::endl; 
+        std::cout << " resould of _xy= "     << _xy << std::endl;  }
+};
+void CallDelegationCOnstruction(void);
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What does the printf and scanf function returns?
+ * 
+ *          printf returns number of characters printed succesfuly 
+ *          scanf returns the number of elements read successfully from console
+ */
+void CallTestPrintfScanf(void);
 //==========================================================================================================
 
 #endif // _ADVANCE_PART_5_H

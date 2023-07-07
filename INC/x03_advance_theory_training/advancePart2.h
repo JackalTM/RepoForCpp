@@ -41,15 +41,15 @@ class Derived22: public BaseClass
 public:
     void Print(void);
 };
-inline void CallDynamicCast(void);
+void CallDynamicCast(void);
 //=====================================================================================
 
 /**************************************************************************************
  * @brief   Explicit cast in c++
  * @note    
  * @return
-
-void CallDynamicCast(void);
+*/
+//void CallDynamicCast(void);
 //=====================================================================================
 
 /**************************************************************************************
@@ -71,9 +71,9 @@ public:
 
     void Print(void);
 };
-inline void CallExplicitcast(void);
 void CallExplicitcast(void);
-
+void CallExplicitcast(void);
+//=====================================================================================
 
 /**************************************************************************************
  * @brief   Usage of extern C in C++
@@ -102,14 +102,30 @@ class FunctionChainingClass
     int _valueA, _valueB;
     int _valueX, _valueY, _valueZ;
 public:
-    FunctionChainingClass&  SetParameterA(int inA); // return *this;
-    FunctionChainingClass&  SetParameterB(int inB); // return *this;
+    FunctionChainingClass&  SetParameterA(int inA)
+    {   _valueA = inA;
+        return *this;   }// return reference
 
-    FunctionChainingClass*  SetParameterX(int inX); // return this;
-    FunctionChainingClass*  SetParameterY(int inY); // return this;
-    FunctionChainingClass*  SetParameterZ(int inZ); // return this;
+    FunctionChainingClass&  SetParameterB(int inB)
+    {   _valueB = inB;
+        return *this;   }// return reference
+//==========================================================
+    FunctionChainingClass*  SetParameterX(int inX)
+    {   _valueX = inX;
+        return this;    }// return pointer
 
-    void Print(void);
+    FunctionChainingClass*  SetParameterY(int inY)
+    {   _valueY = inY;
+        return this;    }// return pointer
+
+    FunctionChainingClass*  SetParameterZ(int inZ)
+    {   _valueZ = inZ;
+        return this;    }// return pointer
+//==========================================================
+    void Print(void)
+    {   std::cout << "Parameters value: " << std::endl;
+        std::cout << " A= " << std::hex << _valueA << ", B= " << std::hex << _valueB << std::endl;
+        std::cout << " X= " << std::hex << _valueX << ", Y= " << std::hex << _valueY << ", Z= " << std::hex << _valueZ << std::endl;}
 };
 
 void CallFunctionChaining(void);
@@ -132,8 +148,12 @@ class FunHiddingBase
 private:
     /* data */
 public:
-    void Funct(void);
-    unsigned int Funct(unsigned int i, unsigned int j);
+    void Funct(void) 
+    { std::cout << "Base class void" << std::endl; }
+
+    unsigned int Funct(unsigned int i, unsigned int j)
+    {   std::cout << "Base class i, j" << std::endl;
+        return 0;   }
 };
 
 class FunHiddingDerived11: public FunHiddingBase
@@ -144,7 +164,9 @@ public:
 // Now not scope resolution is needed to acces Funct from base class
     using FunHiddingBase::Funct;
 
-    unsigned int Funct(char c);
+    unsigned int Funct(char c)
+    {   std::cout << "Derived class char" << std::endl;
+        return 0;   }
 };
 
 void CallFunHidding(void);

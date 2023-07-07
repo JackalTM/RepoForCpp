@@ -93,6 +93,10 @@ void CallVirtualDestructor(void)
 
 /***********************************************************************************************************
  * @brief   What are the places where initializer list must be present
+ * 
+ *          When constatnt is initialized
+ *          When reference is initialized
+ *          When class is asigning inside class
  */
 void CallListInitializer(void)
 {
@@ -107,8 +111,11 @@ void CallListInitializer(void)
     myDerivedListInitializer.Print();
     //myDerivedListInitializer::BaseListInitializer.Print();
 
-    std::cout << "someInt = " << someInt << std::endl; 
+    std::cout << "from Base clss | _X = " << myDerivedListInitializer.GetValue() << std::endl; 
 
+    int y,x;
+    std::tie( y, x) = myDerivedListInitializer.GetBothValues();
+    std::cout << "Both values as tuple _Y=" << y << " _X=" <<  x << std::endl;
 }
 //==========================================================================================================
 
@@ -134,6 +141,42 @@ void CallDrawbackOfVectors(void)
 
     std::cout << "SIZE:     " << myVector.size() << std::endl; 
     std::cout << "CAPACITY: " << myVector.capacity() << std::endl; 
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is Constructor Delegation in C++
+ */
+void CallDelegationCOnstruction(void)
+{
+    BaseConstrDelegation myBaseConstrDelegation11;
+    BaseConstrDelegation myBaseConstrDelegation22(2);
+    BaseConstrDelegation myBaseConstrDelegation33(2, 2);
+
+    myBaseConstrDelegation11.Print();
+    myBaseConstrDelegation22.Print();
+    myBaseConstrDelegation33.Print();
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What does the printf and scanf function returns?
+ * 
+ *          printf returns number of characters printed succesfuly 
+ *          scanf returns the number of elements read successfully from console
+ */
+void CallTestPrintfScanf(void)
+{
+    char pArray[32];
+    int someval = -1;
+     
+    uint16_t printfOut = printf("Value of someval %x \n", someval);
+    uint16_t scanfOut  = scanf("%s", pArray);
+
+    printf("printfOut= %x \n", printfOut);
+    printf("scanfOut=  %x \n", scanfOut);
+
+    getchar();
 }
 //==========================================================================================================
 
