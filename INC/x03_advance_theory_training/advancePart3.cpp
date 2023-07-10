@@ -48,11 +48,9 @@ void CallClassThisPointer_x01(void)
 void CallBaseTypeChange(void)
 {
     BaseTypeChange myBaseTypeChange(-1);
-    uint64_t temp1;
-    int64_t temp2;
 
-    temp1 = myBaseTypeChange;
-    temp2 = myBaseTypeChange;
+    uint64_t temp1  = myBaseTypeChange; // operator int64_t() const    { return _value; }
+    int64_t  temp2  = myBaseTypeChange; // operator int64_t() const    { return _value; }
 
     std::cout << "Temp1:= " << temp1 << std::endl;
     std::cout << "Temp1:= " << std::hex << temp1 << std::endl;
@@ -201,8 +199,6 @@ void CallTestPostAndPreUpdatedValue(void)
 void CallBasePrintNtimes(void)
 {
     BasePrintNtimes myBasePrintNtimes[PRINT_N_TIMES];
-
-
 }
 //==========================================================================================================
 

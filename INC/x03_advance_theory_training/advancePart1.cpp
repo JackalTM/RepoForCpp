@@ -182,17 +182,6 @@ void CallVecorRanges(void)
  *  2.      By declaring function as virtual in Base class and overriding that function in derived class.
  *  2.      (Function signature should be same in Base and Derived class)         
 */
-void BaseClass::A_print(void)   { std::cout << "BaseClass!    void A_print" << std::endl;}
-void BaseClass::B_print(void)   { std::cout << "BaseClass!    virtual void B_print" << std::endl;}
-void BaseClass::C_print(void)   { std::cout << "BaseClass!    virtual void C_print" << std::endl;}
-
-void NextClass::A_print(void)   { std::cout << "NextClass!    void A_print" << std::endl;}
-void NextClass::B_print(void)   { std::cout << "NextClass!    void B_print" << std::endl;}
-void NextClass::C_print(void)   { std::cout << "NextClass!    virtual void C_print" << std::endl;}
-
-void Sword::Usage(int n) {std::cout << "Sword swing " << n << " times" << std::endl;}
-void Rifle::Usage(int n) {std::cout << "Rifle shoot " << n << " times" << std::endl;}
-
 void CallVirtualFunctionsTest1(void)
 {
     std::cout << "=======================================================" << std::endl;

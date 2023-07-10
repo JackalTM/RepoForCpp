@@ -58,7 +58,7 @@ private:
     uint64_t _value;
 
 public:
-    BaseTypeChange(void)    {;}
+    BaseTypeChange(void):           _value(0x00)     {;}
     BaseTypeChange(uint64_t value): _value(value)    {;}
 
     operator int64_t() const    { return _value; }
@@ -128,8 +128,8 @@ class ClassOverloadElement
 private:
     int _var;
 public:
-    ClassOverloadElement(void) {;}
-    ClassOverloadElement(int val): _var(val) {;}
+    ClassOverloadElement(void):    _var(0x00)   {;}
+    ClassOverloadElement(int val): _var(val)    {;}
 
     void Print(void) { std::cout << "_var = " << _var <<  std::endl; }
 
@@ -138,9 +138,9 @@ public:
         return *this;}
 
     ClassOverloadElement operator++(int dummy)// post increment whtn argument is passed
-    {   ClassOverloadElement temp = *this;
+    {   ClassOverloadElement tempClass = *this;
         ++(*this);
-        return temp;}
+        return tempClass;}
 };
 
 void CallOverloadElement(void);
@@ -176,10 +176,12 @@ private:
     int _x;
 
     // Copy constructor as prvate
-    BaseStopCopy(const BaseStopCopy& RefBaseStopCopy): _x{RefBaseStopCopy._x}   {}
+    BaseStopCopy(const BaseStopCopy& RefBaseStopCopy):  _x{RefBaseStopCopy._x}   {;}
 
     // Asign operator private in class
-    BaseStopCopy& operator = (const BaseStopCopy& RHS) { _x = RHS._x; return *this;}
+    BaseStopCopy& operator = (const BaseStopCopy& RHS) 
+    {    _x = RHS._x; 
+        return *this;   }
 
 public:
     BaseStopCopy(void)          {;}
@@ -229,7 +231,7 @@ public:
 private:
     BaseStopFromADDRMth1* operator & (void)  
     {   std::cout << "BaseStopFromADDRMth1* operator & (void)" << std::endl;
-        return this; }// Now by using & new instruction is called
+        return this;    }// Now by using & new instruction is called
 };
 
 class BaseStopFromADDRMth2

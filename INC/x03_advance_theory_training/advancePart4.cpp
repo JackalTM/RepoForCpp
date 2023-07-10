@@ -45,7 +45,6 @@ void CallObjcectSlice(void)
     std::cout << "myDerivedObjSlice.dataB = " << myDerivedObjSlice.dataB << std::endl;
     std::cout << "myDerivedObjSlice.dataD = " << myDerivedObjSlice.dataD << std::endl;
 
-
     BaseObjSlice myBaseObjSlice = myDerivedObjSlice;
     std::cout << "myBaseObjSlice.dataB = " << myBaseObjSlice.dataB << std::endl;
 }

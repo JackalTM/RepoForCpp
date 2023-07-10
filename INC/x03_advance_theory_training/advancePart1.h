@@ -107,17 +107,17 @@ void CallVecorRanges(void);
 class BaseClass
 {
 public:
-    void A_print(void);
-    virtual void B_print(void);
-    virtual void C_print(void);
+    void A_print(void)          { std::cout << "BaseClass!    void A_print" << std::endl;}
+    virtual void B_print(void)  { std::cout << "BaseClass!    virtual void B_print" << std::endl;}
+    virtual void C_print(void)  { std::cout << "BaseClass!    virtual void C_print" << std::endl;}
     //virtual void PurecVirtual(void) = 0x00;
 };
 class NextClass : public BaseClass
 {
 public:
-    void A_print(void);
-    void B_print(void);
-    virtual void C_print(void);
+    void A_print(void)          { std::cout << "NextClass!    void A_print" << std::endl;}
+    void B_print(void)          { std::cout << "NextClass!    void B_print" << std::endl;}
+    virtual void C_print(void)  { std::cout << "NextClass!    virtual void C_print" << std::endl;}
 };
 
 class Weapon
@@ -128,12 +128,12 @@ public:
 class Sword : public Weapon
 {
 public:
-    void Usage(int n);
+    void Usage(int n)   { std::cout << "Sword swing " << n << " times" << std::endl;}
 };
 class Rifle: public Weapon
 {
 public:
-    void Usage(int n);
+    void Usage(int n)   { std::cout << "Rifle shoot " << n << " times" << std::endl;}
 };
 
 void CallVirtualFunctionsTest1(void);

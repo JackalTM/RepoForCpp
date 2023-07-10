@@ -216,6 +216,7 @@ void CallFunctionPointers(void)
 //FunctorBaseMull::FunctorBaseMull(void):         _value{0x00}{;}
 FunctorBaseMull::FunctorBaseMull(uint8_t val):  _value{val} {;}
 uint8_t FunctorBaseMull::operator()(uint8_t val)    {return val * _value;}
+
 void CallFunctorBase(void)
 {
     FunctorBaseMull myMull(0x02); // Asign initial value
