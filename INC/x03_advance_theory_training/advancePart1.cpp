@@ -221,6 +221,7 @@ void CallVirtualFunctionsTest2(void)
 {
     BaseClass* pBaseClass; 
     NextClass* pNextClass; 
+    
     pNextClass = new NextClass();
     pNextClass->A_print();
     pNextClass->B_print();

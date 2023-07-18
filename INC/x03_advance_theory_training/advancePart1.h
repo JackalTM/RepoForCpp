@@ -1,4 +1,4 @@
-#include "_x03_include.h"
+#define _ADVANCE_PART_1_H
 #ifdef _ADVANCE_PART_1_H
 
 #include <stdio.h>
@@ -9,8 +9,6 @@
 #include <type_traits>
 #include <vector>
 #include <algorithm>
-
-void CALL_BasicTest(void);
 
 /**************************************************************************************
  * @brief   Test of a friendship in C++ 
