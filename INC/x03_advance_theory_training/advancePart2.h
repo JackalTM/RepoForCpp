@@ -199,9 +199,11 @@ class  FunctorBaseMull
     uint8_t _value;
 public:
     //FunctorBaseMull(void);
-    FunctorBaseMull(uint8_t val);
+    FunctorBaseMull(uint8_t val):  _value{val} {;}
 
-    uint8_t operator() (uint8_t val);
+    uint8_t operator()(uint8_t val)    
+    {   return (val * _value); }   
+
 };
 void CallFunctorBase(void);
 //=====================================================================================

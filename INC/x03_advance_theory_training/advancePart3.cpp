@@ -7,17 +7,22 @@
  */
 void CallStaticVariablesInclasses(void)
 {
-    PrintClass<int> myPrintClassI1;
-    myPrintClassI1.PrintVal();
+    PrintClass<uint8_t> myPrintClassB1;
+    PrintClass<uint8_t> myPrintClassB2;
+    myPrintClassB1.PrintVal();
+    myPrintClassB2.PrintVal();
 
+    PrintClass<int> myPrintClassI1;
     PrintClass<int> myPrintClassI2;
+    myPrintClassI1.PrintVal();
     myPrintClassI2.PrintVal();
 
-    PrintClass<float> myPrintClassF;
-    myPrintClassF.PrintVal();
+    PrintClass<float> myPrintClassF1;
+    PrintClass<float> myPrintClassF2;
+    myPrintClassF1.PrintVal();
+    myPrintClassF2.PrintVal();
 }
 //==========================================================================================================
-
 
 /***********************************************************************************************************
  * @brief   What is this pointer in C++
@@ -25,10 +30,10 @@ void CallStaticVariablesInclasses(void)
  *          2. It a const pointer whitch holds the addr of current object [type*const this]
  *          3. If memeber function is cosnt then, this pointers type becomes [const type * const this]
  */
-void BaseClass01::SetValue(int x)   { _x = x;}
+void BaseClass01::SetValue(int x)   { _x = x; }
 // void SetValue(Base* const this, int x);
 
-int BaseClass01::GetValue(void)     { return _x;}
+int BaseClass01::GetValue(void)     { return _x; }
 //int GetValue(const Base* const this) { return this->_x;}
 
 void CallClassThisPointer_x01(void)
