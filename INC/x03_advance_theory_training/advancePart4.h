@@ -209,7 +209,8 @@ void CallStaticCast6(void);
 
 /***********************************************************************************************************
  * @brief   What is structular padding and packing in C++
- *          This is way to speed up the cpu
+ *          This is way to 
+ * speed up the cpu
  * 
  *          In this case with   #pragma pack(1) sizeof(someStruct_t) = less
  *          With case of        #pragma pack(0) sizeof(someStruct_t) = more

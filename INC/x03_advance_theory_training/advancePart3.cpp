@@ -244,7 +244,6 @@ void CallBaseStopCopy(void)
  *          1. overload & operator and keep it private
  *          2. Delete  * operator from class
  */
-
 void CallBaseStopFromADDRMth1(void)
 {
     BaseStopFromADDRMth1  myBaseStopFromADDRMth1(11);
@@ -275,8 +274,6 @@ void CallBaseStopFromADDRMth2(void)
 void CallStopFromInheritance(void)
 {
     DerivedFromBaseInheritance myDerivedFromBaseInheritance(11, 22);
-
-
 
     std::cout << "Stop inheritance test" <<  std::endl;
 }

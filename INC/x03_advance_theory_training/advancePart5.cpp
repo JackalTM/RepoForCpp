@@ -9,6 +9,7 @@
  *              Enumarate class is much more elagant o use
  */
 void CallEnumTypes(void)
+
 {
     normalEnum errorTypes1;
     errorTypes1 = worngData;
@@ -25,7 +26,7 @@ void CallEnumTypes(void)
     {
     case ERROR_WRONG_DATA: std::cout << "normalEnum Wrong data  " <<  ERRORS_ENUM <<   std::endl;   break;
     case ERROR_SHORT_DATA: std::cout << "normalEnum Short data  " <<  ERRORS_ENUM <<   std::endl;   break;
-    case ERROR_LONG_DATA:  std::cout << "normalEnum Long data   "  <<  ERRORS_ENUM <<   std::endl;   break;
+    case ERROR_LONG_DATA:  std::cout << "normalEnum Long data   " <<  ERRORS_ENUM <<   std::endl;   break;
     }
 
     classEnum errorTypes2;

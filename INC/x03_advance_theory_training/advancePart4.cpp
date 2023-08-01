@@ -122,11 +122,12 @@ void CallPlacementNew(void)
     // Placement new case
     std::cout << "Placement new case:" << std::endl;
 
-    uint8_t* pBase = new uint8_t[10 * sizeof(BasePlecementNew)]; // Memory pool
+    uint8_t memSize = sizeof(BasePlecementNew);
+    uint8_t* pBase = new uint8_t[10 * memSize]; // Memory pool
 
-    BasePlecementNew* pBasePlecementNew1 = new (pBase + 0) BasePlecementNew(0x00);
-    BasePlecementNew* pBasePlecementNew2 = new (pBase + 4) BasePlecementNew(0x04);
-    BasePlecementNew* pBasePlecementNew3 = new (pBase + 8) BasePlecementNew(0x08);
+    BasePlecementNew* pBasePlecementNew1 = new (pBase + (0 * memSize)) BasePlecementNew(0x00);
+    BasePlecementNew* pBasePlecementNew2 = new (pBase + (1 * memSize)) BasePlecementNew(0x04);
+    BasePlecementNew* pBasePlecementNew3 = new (pBase + (2 * memSize)) BasePlecementNew(0x08);
 
     // Only reason to explicid call destructor in placement new
     pBasePlecementNew1->~BasePlecementNew();
@@ -230,7 +231,7 @@ void CallStaticCast3(void)
     uint8_t* pByte;
     uint32_t* pDWord;
 
-    pByte = (uint8_t*)(&dWord); // C style asting
+    pByte = (uint8_t*)(&dWord); // C style casting
 
     // Dangerous cast!!!
     pDWord = (uint32_t*)(&byte); // Pass by compile time but fail at run time
