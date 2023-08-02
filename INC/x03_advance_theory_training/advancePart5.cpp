@@ -77,15 +77,17 @@ void CallRetTupleFunction(void)
  */
 void CallVirtualDestructor(void)
 {
-    BaseVirtualDestructor* pBaseFromBase = new BaseVirtualDestructor();
+    BaseVirtualDestructor* pBaseFromBase = new BaseVirtualDestructor('B');
 
-    DerivedVirtualDestructor* pBaseFromDerived = new DerivedVirtualDestructor();
+    DerivedVirtualDestructor* pBaseFromDerived = new DerivedVirtualDestructor('D');
 
     pBaseFromBase->Print();
     pBaseFromDerived->Print();
 
+    std::cout << "========================================" << std::endl;
     std::cout << "sizeof(pBaseFromBase) =  "<<              sizeof(BaseVirtualDestructor) <<        std::endl;
     std::cout << "sizeof(DerivedVirtualDestructor) =  "<<   sizeof(DerivedVirtualDestructor) <<     std::endl;
+    std::cout << "========================================" << std::endl;
 
     delete pBaseFromBase;
     delete pBaseFromDerived;

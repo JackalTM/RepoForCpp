@@ -43,6 +43,7 @@ void CallEnumTypes(void);
  */
 typedef std::tuple<uint32_t, uint32_t, uint64_t, std::string> dataFrameRow_t;
 dataFrameRow_t RetTupleFunction(uint8_t inIndex);
+
 void CallRetTupleFunction(void);
 //==========================================================================================================
 
@@ -54,20 +55,28 @@ void CallRetTupleFunction(void);
  */
 class BaseVirtualDestructor
 {
+    uint8_t _num;
+
 public:
     virtual void Print(void)                { std::cout << "Base class method - Print " << std::endl; }
 
-    BaseVirtualDestructor(void)             { std::cout << "Base class constructor  "   << std::endl;}
-    virtual ~BaseVirtualDestructor(void)    { std::cout << "Base class destructor  "    << std::endl;}
+    BaseVirtualDestructor(uint8_t inNum): _num(inNum)
+    {   std::cout  << _num << "- Base class constructor  "<< std::endl; }
+
+    virtual ~BaseVirtualDestructor(void)    { std::cout << _num << "- Base class destructor  "    << std::endl; }
 };
 
 class DerivedVirtualDestructor: public BaseVirtualDestructor
 {
+    uint8_t _num;
+
 public:
     virtual void Print(void)                { std::cout << "Derived class method - Print "  << std::endl; }
 
-    DerivedVirtualDestructor(void)          { std::cout << "Derived class constructor  "    << std::endl;}
-    ~DerivedVirtualDestructor(void)         { std::cout << "Derived class destructor  "     << std::endl;}
+    DerivedVirtualDestructor(uint8_t inNum): BaseVirtualDestructor::BaseVirtualDestructor(inNum), _num(inNum)
+    {   std::cout << _num << "- Derived class constructor" << std::endl; }
+
+    ~DerivedVirtualDestructor(void)         { std::cout << _num << "- Derived class destructor  "     << std::endl; }
 };
 void CallVirtualDestructor(void);
 //==========================================================================================================
