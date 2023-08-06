@@ -31,3 +31,7 @@
 #ifdef _CFILE_TEST_H
 #include "INC/x03_advance_theory_training/cfileTest.h"
 #endif
+
+#ifdef  _TEMPLATE_FILES_TEST_H
+#include "INC/x03_advance_theory_training/templateFilesTest.h"
+#endif
