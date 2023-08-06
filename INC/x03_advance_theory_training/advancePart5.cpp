@@ -214,13 +214,13 @@ void CallEnumTestFunc(void)
     switch (myMAIN_COLORS)
     {
     case MAIN_COLORS::RED: 
-        std::cout << "RED" << std::endl;   break;
+        std::cout << "red" << std::endl;   break;
 
     case MAIN_COLORS::GRN: 
-        std::cout << "RED" << std::endl;   break;
+        std::cout << "green" << std::endl;   break;
 
     case MAIN_COLORS::BLU: 
-        std::cout << "RED" << std::endl;   break;
+        std::cout << "blue" << std::endl;   break;
     
     default:
         break;
@@ -261,5 +261,170 @@ void Call_classTestType_structTestType(void)
 */
 }
 //==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is the order of functionevaluation in C++
+ */
+bool FunParamOrder_build(void)
+{   std::cout << "Some data is build!!" << std::endl;
+    return false; }
+
+bool FunParamOrder_use(void)
+{   std::cout << "Builded data are used!!" << std::endl;
+    return false; }
+
+void FunParamOrder_power2(unsigned int inA)
+{
+    std::cout << "pwr() = " << inA * inA << std::endl;
+}
+void FunParamOrder_mull(unsigned int inA, unsigned int inB)
+{
+    std::cout << "mull() = " << inA * inB << std::endl;
+}
+
+void CallFunParamOrder(void)
+{
+    FunParamOrder_power2(FunParamOrder_build() + FunParamOrder_use());
+    std::cout << "==================================================" << std::endl;
+    FunParamOrder_mull(FunParamOrder_build(), FunParamOrder_use());
+    std::cout << "==================================================" << std::endl;
+    uint8_t tBool = FunParamOrder_build() & FunParamOrder_use();
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is the diferences in references and pointers in C++
+ *          And when is best usage of both of them
+ * 
+ *          Reference: Used in function paremeter and return type
+ *          1. Pass big object
+ *          2. Avoid object slice
+ *          3. Modify local variables of call function
+ * 
+ *          Pointers: Algoritms and data structures like list , tree graph
+ *          1. On the end of node NULL pointer can be used
+ *          2. Pointer can be changes to another pointer
+ *          3. 
+ */ 
+void SomeFun(Weapon& inClass)
+{
+    inClass.Print();
+}
+
+void CallPtrAndRefDifference1(void)
+{
+    Weapon  myWeapon;
+    Blade   myBlade;    
+
+    SomeFun(myWeapon);
+    SomeFun(myBlade);
+}
+
+void CallPtrAndRefDifference2(void)
+{// Copy constructor with using reference and pointer
+    OpticREF myOpticREF('A', 7);
+    myOpticREF.Print();
+
+    OpticREF myOptREFcopy = myOpticREF;
+    myOptREFcopy.Print();
+
+std::cout << "==================================================" << std::endl;
+
+    OpticPTR myOpticPTR('A', 7);
+    myOpticPTR.Print();
+
+    OpticPTR myOptPTRcopy = (OpticPTR*)&myOpticPTR;
+    myOptPTRcopy.Print();
+}
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Why static define data memeber must to be defined in file.cpp and not in file.h
+ * 
+ *          If it is called in file.h then it is intialized multiple times.
+ *          Compiler then will throw error multiple definitions
+ */
+
+sword_t katana;
+sword_t twoAndHalfHand;
+
+void Callstaticmemebers(void)
+{
+    katana.mass = 2;
+    katana.lenght = 120;
+    katana.tickness = 5;
+    katana.type = 0x22;
+}
+
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Why is better to pass by Reference or by Pointer then by value.
+ * 
+ *          
+ */
+
+void PrintVestorValues(std::vector<uint64_t> &refVector)
+{
+    uint64_t tEle;
+    uint8_t i, i_max;
+    std::cout  << "Vector values: " << tEle << std::endl;
+
+    i_max = refVector.size();
+    for(i=0; i_max;  i++)
+    {
+        tEle = refVector[i];
+        std::cout  << "- " << tEle << std::endl;
+    }
+}
+
+void CallRefAndPointerDeffrerence(void)
+{
+    std::vector<uint64_t> tVector;
+
+    tVector.push_back(1);
+    tVector.push_back(2);
+    tVector.push_back(3);
+
+    uint8_t i, i_max;
+    i_max = tVector.size();
+    for(i=0; i_max;  ++i)
+    {
+        std::cout  << "- " << tVector[i] << std::endl;
+    }
+
+    //PrintVestorValues(tVector);
+}
+
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Why size of an empty class or structure is not zero in C++?
+ * 
+ *          Returning ref to local variable can be coz its can cause segmentacion error
+ *          
+ *          This is cause cpp cause to seperate each other.
+ *          But when class or struct has some values inside then size would by of that size.
+ */
+
+void CallTestEmptyClassAndStruct(void)
+{
+    uint16_t tClassSize     = sizeof(SomeTestEmptyClass);
+    uint16_t tStructSize    = sizeof(sometestEmptyStruct_t); 
+
+    std::cout  << "Both Class and strut have no data inside: "  << std::endl;
+    std::cout  << "Empty Class - sizeof(SomeTestEmptyClass)     = " << tClassSize << " B" << std::endl;
+    std::cout  << "Empty Class - sizeof(sometestEmptyStruct_t)  = " << tStructSize << " B" << std::endl;
+
+    tClassSize  = sizeof(SomeTestClass);
+    tStructSize = sizeof(sometestStruct_t);
+    std::cout  << "Both Class and strut have uint16_t variable inside: "  << std::endl;
+    std::cout  << "Empty Class - sizeof(SomeTestClass)          = " << tClassSize << " B" << std::endl;
+    std::cout  << "Empty Class - sizeof(sometestStruct_t)       = " << tStructSize << " B" << std::endl;
+}
+//==========================================================================================================
+
+
+
 
 #endif // _ADVANCE_PART_5_H

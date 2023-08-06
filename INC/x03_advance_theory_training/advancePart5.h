@@ -98,7 +98,7 @@ public:
     BaseListInitializer(int x, int& refSomeInt):    _X(x),      refSomeInt(refSomeInt)      { refSomeInt++;}
 
     int GetValue(void)  { return _X; }
-    void Print(void) {  std::cout << "_X = " << _X << std::endl; }
+    void Print(void)    { std::cout << "_X = " << _X << std::endl; }
 };
 
 class DerivedListInitializer: public BaseListInitializer
@@ -109,7 +109,9 @@ public:
     {   std::cout << "DerivedListInitializer and BaseListInitializer" << std::endl; }
 
     int GetValue(void)  { return _Y; }
-    bothVals_tuple GetBothValues(void) { return std::make_tuple( _Y, BaseListInitializer::GetValue()); }
+
+    bothVals_tuple GetBothValues(void) 
+    {   return std::make_tuple( _Y, BaseListInitializer::GetValue()); }
 
     void Print(void) 
     {   std::cout << "_Y = " << _Y << std::endl; }
@@ -181,7 +183,7 @@ public:
     Base_RVO_NRVO(void) 
     {   std::cout << "Constructor: Base_RVO_NRVO " << std::endl;    }
 
-    Base_RVO_NRVO(const Base_RVO_NRVO &) 
+    Base_RVO_NRVO(const Base_RVO_NRVO &) // Call when copy
     {   std::cout << "Copy Constructor: Base_RVO_NRVO " << std::endl;    }
 };
 Base_RVO_NRVO FunctionOf_RVO_NRVO(void);
@@ -237,9 +239,141 @@ void Call_classTestType_structTestType(void);
 
 /***********************************************************************************************************
  * @brief   What is the order of functionevaluation in C++
- *  5,32
+ */
+bool FunParamOrder_build(void);
+bool FunParamOrder_use(void);
+void FunParamOrder_power2(unsigned int inA);
+void FunParamOrder_mull(unsigned int inA, unsigned int inB);
+void CallFunParamOrder(void);
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   What is the diferences in references and pointers in C++
+ *          And when is best usage of both of them
+ * 
+ *          Reference: Used in function paremeter and return type
+ *          1. Pass big object
+ *          2. Avoid object slice
+ *          3. Modify local variables of call function
+ * 
+ *          Pointers: Algoritms and data structures like list , tree graph
+ *          1. On the end of node NULL pointer can be used
+ *          2. Pointer can be changes to another pointer
+ *          3. 
+ */
+class Weapon
+{
+int _mass;
+
+public:
+    virtual void Print(void)
+    {   std::cout << "Weapon class" << std::endl; }
+};
+
+class Blade: public Weapon
+{
+int _lenght;
+
+public:
+    virtual void Print(void)
+    {   std::cout << "Weapon class" << std::endl; }
+};
+
+void SomeFun(Weapon& inClass);
+
+class OpticREF
+{
+    static uint16_t sCalln;
+    uint8_t _type;
+    uint16_t _dim;
+
+public:
+    OpticREF(uint8_t inType, uint16_t inDim):  _type(inType), _dim(inDim) 
+    {   ; }
+
+    OpticREF(const OpticREF& refOptic): _type(refOptic._type + 1) 
+    {   _dim = refOptic._dim + 1; }
+
+virtual void Print(void)
+    {   std::cout << "OpticREF | Optic class: " << _type << " | Optic dim: " << _dim << std::endl; }
+};
+
+class OpticPTR
+{
+    static uint16_t sCalln;
+    uint8_t _type;
+    uint16_t _dim;
+
+public:
+    OpticPTR(uint8_t inType, uint16_t inDim): _type(inType), _dim(inDim) 
+    {   ; }
+
+    OpticPTR(const OpticPTR* pOpticPTR): _type(pOpticPTR->_type + 1) 
+    {   _dim = pOpticPTR->_dim + 1; }
+
+virtual void Print(void)
+    {   std::cout << "OpticPTR | Optic class: " << _type << " | Optic dim: " << _dim << std::endl; }
+};
+
+void CallPtrAndRefDifference1(void);
+void CallPtrAndRefDifference2(void);
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Why static define data memeber must to be defined in file.cpp and not in file.h
+ * 
+ *          If it is called in file.h then it is intialized multiple times.
+ *          Compiler then will throw error multiple definitions
  */
 
+typedef struct 
+{
+    uint8_t mass;
+    uint8_t lenght;
+    uint8_t type;
+    uint8_t tickness;
+}sword_t;
+
+void Callstaticmemebers(void);
 //==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Why is better to pass by Reference or by Pointer then by value.
+ * 
+ *          
+ */
+
+void PrintVestorValues(std::vector<uint64_t> &refVector);
+
+void CallRefAndPointerDeffrerence(void);
+
+//==========================================================================================================
+
+/***********************************************************************************************************
+ * @brief   Why size of an empty class or structure is not zero in C++?
+ * 
+ *          Returning ref to local variable can be coz its can cause segmentacion error
+ *          
+ *          This is cause cpp cause to seperate each other.
+ *          But when class or struct has some values inside then size would by of that size.
+ */
+class SomeTestEmptyClass    {};
+
+class SomeTestClass
+{
+    uint16_t _value;
+};
+
+struct sometestEmptyStruct_t    {};
+
+struct sometestStruct_t
+{
+    uint16_t _value;
+};
+
+void CallTestEmptyClassAndStruct(void);
+//==========================================================================================================
+
+
 
 #endif // _ADVANCE_PART_5_H
