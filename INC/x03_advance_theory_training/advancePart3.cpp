@@ -199,7 +199,7 @@ void CallTestPostAndPreUpdatedValue(void)
  * @brief   How to print smething N times without using loop or recursion in C++
  * 
  *          Constructor will be called PRINT_N_TIMES times because class is constructed
- */
+ */0
 
 void CallBasePrintNtimes(void)
 {
