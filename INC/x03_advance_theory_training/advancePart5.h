@@ -50,7 +50,7 @@ void CallRetTupleFunction(void);
 /***********************************************************************************************************
  * @brief   Why we need virtual destructor
  * 
- *          To call both destructore from derived class and from base class.
+ *          To call both dectructors from derived class and from base class.
  *          This can lead to memory leak
  */
 class BaseVirtualDestructor

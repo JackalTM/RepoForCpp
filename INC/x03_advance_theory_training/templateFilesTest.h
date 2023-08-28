@@ -16,7 +16,6 @@ using namespace std;
  * 
  *          Before every method template<typename T, int N> need to be used
  */
-
 #define TEMPLATE_ARR_SIZE 0x08
 #define TEMPLATE_VARIABLE_TYPE uint32_t
 
