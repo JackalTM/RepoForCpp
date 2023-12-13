@@ -1,3 +1,5 @@
+#ifdef X00_CLASS_REF
+
 #include "ClassRef.h"
 #include <iostream>
 
@@ -73,3 +75,5 @@ void GroupClass::PrintMyData(void)
     printf("dat3= %x dat4= %x dat34= %x \n", dat3, dat4, dat34);
 }
 //=============================================================================================================
+
+#endif // #ifdef X00_CLASS_REF

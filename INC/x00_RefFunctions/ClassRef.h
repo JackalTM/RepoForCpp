@@ -1,3 +1,5 @@
+#ifdef X00_CLASS_REF
+
 #include <stdint.h>
 #include <stdio.h>
 #include <iostream>
@@ -60,3 +62,5 @@ public:
 
     void PrintMyData(void);
 };
+
+#endif // X00_CLASS_REF
