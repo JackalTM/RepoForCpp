@@ -1,4 +1,5 @@
 #include "InheritanceTest.h"
+#ifdef CMP_X02_INHERITANCE_TEST_H
 
 /************************************************************************************
  * @name    Parrent_class
@@ -272,3 +273,5 @@ void Children_class::PrintLastOperations(void)
     printf(" last '&' %x \n", retVals[4]);
     printf(" last '|' %x \n", retVals[5]);
 }
+
+#endif // CMP_X02_INHERITANCE_TEST_H

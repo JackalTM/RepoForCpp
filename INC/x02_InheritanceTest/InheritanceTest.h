@@ -1,3 +1,6 @@
+#include "_x02_inheritance_test.h"
+#ifdef CMP_X02_INHERITANCE_TEST_H
+
 #include <stdint.h>
 #include <stdio.h>
 
@@ -51,3 +54,4 @@ public:
 };
 //===================================================================================
 #endif // _INHERITANCE_TEST_H
+#endif // CMP_X02_INHERITANCE_TEST_H
