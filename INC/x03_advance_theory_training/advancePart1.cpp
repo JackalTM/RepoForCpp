@@ -1,12 +1,12 @@
 #include "advancePart1.h"
-#ifdef _ADVANCE_PART_1_H
+#ifdef CMP_ADVANCE_PART_1_H
 
 /**************************************************************************************
  * @brief   Test of a friendship in C++ 
  * @note    Friend function can access private data
  * @return
 */
-BaseClassFriend::BaseClassFriend(unsigned int x): x(x)
+BaseClassFriend::BaseClassFriend(unsigned int x, unsigned int y): x(x), y(y)
 {;}
 
 BaseClassFriend::~BaseClassFriend()
@@ -21,7 +21,7 @@ void FriendFunction(BaseClassFriend& RefBase, unsigned int x)
 
 void CallFriendFunction(void)
 {
-    BaseClassFriend Base(0xFF); 
+    BaseClassFriend Base(0xFF, 0xEE); 
     FriendFunction(Base, 0xAA);
 }
 //=====================================================================================
@@ -35,7 +35,7 @@ void AutoKeyword(void)
 {
     auto X = 0xFF;
     auto y = 2.718;
-    auto z = BaseClassFriend(0xFF);
+    auto z = BaseClassFriend(0xFF, 0xEE);
 
     //std::cout << typeid(x).name() << std::endl;
 }
@@ -244,4 +244,4 @@ void CallPureVirtualFunctions(void)
     pRifle->Usage(9);
 }
 
-#endif // _ADVANCE_PART_1_H
+#endif // CMP_ADVANCE_PART_1_H

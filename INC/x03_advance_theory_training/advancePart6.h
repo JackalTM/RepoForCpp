@@ -1,5 +1,5 @@
 #include "_x03_include.h"
-#ifdef _ADVANCE_PART_6_H
+#ifdef CMP_ADVANCE_PART_6_H
 
 #include <iostream>
 #include <vector>
@@ -24,6 +24,6 @@
 void CallUsageOfVectors(void);
 //==========================================================================================================
 
-#endif // _ADVANCE_PART_5_H
+#endif // CMP_ADVANCE_PART_5_H
 
 

@@ -1,5 +1,5 @@
 #include "cfileTest.h"
-#ifdef _CFILE_TEST_H
+#ifdef CMP_CFILE_TEST_H
 
 uint8_t FuncfileTestLogicAND(uint8_t inA, uint8_t inB)
 {

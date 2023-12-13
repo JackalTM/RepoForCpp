@@ -1,6 +1,5 @@
 #include "_x03_include.h"
-
-#ifdef _ADVANCE_PART_3_H
+#ifdef CMP_ADVANCE_PART_3_H
 
 #include <stdio.h>
 #include <iostream>

@@ -1,5 +1,5 @@
 #include "_x03_include.h"
-#ifdef _ADVANCE_PART_4_H
+#ifdef CMP_ADVANCE_PART_4_H
 
 #include <stdio.h>
 #include <iostream>
@@ -253,4 +253,4 @@ typedef struct
 void CallStructularPadding2(void);
 //==========================================================================================================
 
-#endif // _ADVANCE_PART_4_H
+#endif // CMP_ADVANCE_PART_4_H

@@ -1,5 +1,5 @@
 #include "_x03_include.h"
-#ifdef _TEMPLATE_FILES_TEST_H
+#ifdef CMP_TEMPLATE_FILES_TEST_H
 
 #include <iostream>
 #include <stdio.h>

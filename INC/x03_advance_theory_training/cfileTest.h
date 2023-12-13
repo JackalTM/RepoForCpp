@@ -1,5 +1,5 @@
 #include "_x03_include.h"
-#ifdef _CFILE_TEST_H
+#ifdef CMP_CFILE_TEST_H
 
 #include <stdio.h>
 #include <stdint.h>

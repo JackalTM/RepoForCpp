@@ -1,5 +1,5 @@
 #include "_x03_include.h"
-#ifdef _ADVANCE_PART_2_H
+#ifdef CMP_ADVANCE_PART_2_H
 
 #include <stdio.h>
 #include <iostream>
@@ -9,7 +9,6 @@ extern "C"{
 #include "cfileTest.h"
 }
 */
-
 
 /**************************************************************************************
  * @brief   Dynamic cast
@@ -231,4 +230,4 @@ void CallDeleteTest1(void);
 void CallDeleteTest2(void);
 //=====================================================================================
 
-#endif // _ADVANCE_PART_2_H
+#endif // CMP_ADVANCE_PART_2_H

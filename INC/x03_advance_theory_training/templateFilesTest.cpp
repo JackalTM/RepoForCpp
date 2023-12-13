@@ -1,5 +1,5 @@
 #include "templateFilesTest.h"
-#ifdef _TEMPLATE_FILES_TEST_H
+#ifdef CMP_TEMPLATE_FILES_TEST_H
 
 /*********************************************
  * @brief   Why template functions  

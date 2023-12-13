@@ -1,5 +1,5 @@
 #include "advancePart6.h"
-#ifdef _ADVANCE_PART_6_H
+#ifdef CMP_ADVANCE_PART_6_H
 
 /***********************************************************************************************************
  * @brief       Why using namespace is bad to use

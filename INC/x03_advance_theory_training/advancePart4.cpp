@@ -1,5 +1,5 @@
 #include "advancePart4.h"
-#ifdef _ADVANCE_PART_4_H
+#ifdef CMP_ADVANCE_PART_4_H
 
 /***********************************************************************************************************
  * @brief   Is it posible to call constructor and deconstructor by your self?

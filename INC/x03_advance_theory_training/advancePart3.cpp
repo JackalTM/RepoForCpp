@@ -1,5 +1,5 @@
 #include "advancePart3.h"
-#ifdef _ADVANCE_PART_3_H
+#ifdef CMP_ADVANCE_PART_3_H
 
 /***********************************************************************************************************
  * @brief   Static variables in classes 

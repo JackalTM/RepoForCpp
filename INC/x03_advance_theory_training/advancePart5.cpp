@@ -1,5 +1,5 @@
 #include "advancePart5.h"
-#ifdef _ADVANCE_PART_5_H
+#ifdef CMP_ADVANCE_PART_5_H
 
 /***********************************************************************************************************
  * @brief       The differences betwen plain enum and enum class in C++
@@ -427,4 +427,4 @@ void CallTestEmptyClassAndStruct(void)
 
 
 
-#endif // _ADVANCE_PART_5_H
+#endif // CMP_ADVANCE_PART_5_H

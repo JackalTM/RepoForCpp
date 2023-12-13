@@ -1,5 +1,5 @@
 #include "advancePart2.h"
-#ifdef _ADVANCE_PART_2_H
+#ifdef CMP_ADVANCE_PART_2_H
 
 /**************************************************************************************
  * @brief   Dynamic cast
@@ -308,4 +308,4 @@ void CallDeleteTest2(void)
 }// 2,16
 //=====================================================================================
 
-#endif // #ifdef _ADVANCE_PART_2_H
+#endif // #ifdef CMP_ADVANCE_PART_2_H

@@ -1,5 +1,5 @@
 #include "_x03_include.h"
-#ifdef _ADVANCE_PART_5_H
+#ifdef CMP_ADVANCE_PART_5_H
 
 #include <stdio.h>
 #include <iostream>
@@ -146,7 +146,7 @@ public:
     // Both delegated constructors
     BaseConstrDelegation(void):             BaseConstrDelegation(0, 0) {;}
     BaseConstrDelegation(int x):            BaseConstrDelegation(x, 0) {;}
-    // True constructor
+    // True constructor-
     BaseConstrDelegation(int x, int y):     _x(x), _y(y) 
     {//  Example of some inside calculation that are present.
         int temp = 1;

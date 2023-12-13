@@ -1,5 +1,5 @@
 #include "_x03_include.h"
-#ifdef _ADVANCE_PART_1_H
+#ifdef CMP_ADVANCE_PART_1_H
 
 #include <stdio.h>
 #include <string.h>
@@ -19,9 +19,10 @@ class BaseClassFriend
 {
 private:
     unsigned int x;
+    unsigned int y;
 
 public:
-    BaseClassFriend(unsigned int x);
+    BaseClassFriend(unsigned int x, unsigned int y);
     ~BaseClassFriend();
 
     friend void FriendFunction(BaseClassFriend& RefBase, unsigned int x);
@@ -139,4 +140,4 @@ void CallVirtualFunctionsTest2(void);
 void CallPureVirtualFunctions(void);
 //=====================================================================================
 
-#endif // _ADVANCE_PART_1_H
+#endif // CMP_ADVANCE_PART_1_H
