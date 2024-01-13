@@ -13,7 +13,7 @@ extern "C"{
 /**************************************************************************************
  * @brief   Dynamic cast
  * @note    1. Work only on polimorfic base class (at least one virtual function)
- *          IT uses this information to decide about wrong down cast
+ *             IT uses this information to decide about wrong down cast
  *          2. It is used for up-cast (D->B) and down-cast(b->D), but it is mainly used for correct downcast.
  *          3. Uaing this cast has run time overhead coz it checks object types at runtime using RTTi 
  *          4. If we are sure that we will never cast to wrong object than we should always avoid this cast and sue static_cast
@@ -94,36 +94,43 @@ inline void CallExternCinCpp(void);
  * @brief   What is function chaining in C++?
  * 
  *          It gives proper code analisis power
+ *          Method return pointer to itself class.
  * 
  */
 class FunctionChainingClass
-{
-    int _valueA, _valueB;
-    int _valueX, _valueY, _valueZ;
+{// this is a pointer to class itself
+    unsigned int _valueA, _valueB, _valueC;
+    unsigned int _valueX, _valueY, _valueZ;
 public:
-    FunctionChainingClass&  SetParameterA(int inA)
+// Returning class itself by refeerence
+    FunctionChainingClass&  SetParameterA(unsigned int inA)
     {   _valueA = inA;
         return *this;   }// return reference
 
-    FunctionChainingClass&  SetParameterB(int inB)
+    FunctionChainingClass&  SetParameterB(unsigned int inB)
     {   _valueB = inB;
         return *this;   }// return reference
+
+    FunctionChainingClass&  SetParameterC(unsigned int inC)
+    {   _valueC = inC;
+        return *this;   }// return reference
 //==========================================================
-    FunctionChainingClass*  SetParameterX(int inX)
+// Returning class itself by pointer
+    FunctionChainingClass*  SetParameterX(unsigned int inX)
     {   _valueX = inX;
         return this;    }// return pointer
 
-    FunctionChainingClass*  SetParameterY(int inY)
+    FunctionChainingClass*  SetParameterY(unsigned int inY)
     {   _valueY = inY;
         return this;    }// return pointer
 
-    FunctionChainingClass*  SetParameterZ(int inZ)
+    FunctionChainingClass*  SetParameterZ(unsigned int inZ)
     {   _valueZ = inZ;
         return this;    }// return pointer
 //==========================================================
     void Print(void)
     {   std::cout << "Parameters value: " << std::endl;
-        std::cout << " A= " << std::hex << _valueA << ", B= " << std::hex << _valueB << std::endl;
+        std::cout << " A= " << std::hex << _valueA << ", B= " << std::hex << _valueB << ", C= " << std::hex << _valueC << std::endl;
         std::cout << " X= " << std::hex << _valueX << ", Y= " << std::hex << _valueY << ", Z= " << std::hex << _valueZ << std::endl;}
 };
 

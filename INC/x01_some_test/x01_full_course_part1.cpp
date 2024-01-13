@@ -1,5 +1,5 @@
 #include "x01_full_course_part1.h"
-#ifdef _X01_FULL_COURSE_PART01
+#ifdef CMP_X01_FULL_COURSE_PART01_H
 
 //**********************************************************************************************************
 // wyświetlaie w C++

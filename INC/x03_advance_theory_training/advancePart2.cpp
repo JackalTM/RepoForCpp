@@ -4,7 +4,7 @@
 /**************************************************************************************
  * @brief   Dynamic cast
  * @note    1. Work only on polimorfic base class (at least one virtual function)
- *          IT uses this information to decide about wrong down cast
+ *             IT uses this information to decide about wrong down cast
  *          2. It is used for up-cast (D->B) and down-cast(b->D), but it is mainly used for correct downcast.
  *          3. Uaing this cast has run time overhead coz it checks object types at runtime using RTTi 
  *          4. If we are sure that we will never cast to wrong object than we should always avoid this cast and sue static_cast
@@ -126,9 +126,9 @@ void CallFunctionChaining(void)
 {
     FunctionChainingClass myFunChain;
 
-    myFunChain.SetParameterA(0x10).SetParameterB(0x20);
+    myFunChain.SetParameterA(0x11).SetParameterB(0x22).SetParameterC(0x33);
 
-    myFunChain.SetParameterX(0x30)->SetParameterY(0x40)->SetParameterZ(0x50)->Print();
+    myFunChain.SetParameterX(0x44)->SetParameterY(0x55)->SetParameterZ(0x66)->Print();
 
     return;
 }
