@@ -111,14 +111,16 @@ uint32_t Parrent_class::BoolOR(uint32_t inA, uint32_t inB)
 
 /************************************************************************************
  * @name    GetLastVals
- * @brief   Return division of two arguments
+ * @brief   Set values by pointer
  * @param   pAdd Pointer to last summ variable
  * @param   pSubb Pointer to last sub variable
  * @param   pMull Pointer to last mull variable
  * @param   pDiv Pointer to last Div variable
  * @return  void
 */
-void Parrent_class::GetLastVals(uint32_t* pAdd, uint32_t* pSubb, uint32_t* pMull, uint32_t* pDiv, uint32_t* pAnd, uint32_t* pOr)
+void Parrent_class::GetLastVals(uint32_t* pAdd, uint32_t* pSubb, 
+    uint32_t* pMull, uint32_t* pDiv, 
+    uint32_t* pAnd, uint32_t* pOr)
 {
     *pAdd = lastAdd;
     *pSubb = lastSubb;
@@ -126,6 +128,25 @@ void Parrent_class::GetLastVals(uint32_t* pAdd, uint32_t* pSubb, uint32_t* pMull
     *pDiv = lastDiv;
     *pAnd = lastAND;
     *pOr = lastOR;
+}
+//===================================================================================
+
+/************************************************************************************
+ * @name    GetLastVals
+ * @brief   Return values by structure
+ * @return  Structure of type struct values_t
+*/
+struct values_t Parrent_class::GetLastVals(void)
+{
+    struct values_t rvals;
+    rvals.vadd = lastAdd;
+    rvals.vsubb = lastSubb;
+    rvals.vmull = lastMull;
+    rvals.vdiv = lastDiv;
+    rvals.vand = lastAND;
+    rvals.vor = lastOR;
+
+    return rvals;
 }
 //===================================================================================
 
@@ -262,16 +283,37 @@ void Children_class::PrintAll(uint32_t inA, uint32_t inB)
  * @param   void
  * @return  void
 */
-void Children_class::PrintLastOperations(void)
+void Children_class::PrintLastOperations1(void)
 {
-    GetLastVals((uint32_t*)&retVals[0], (uint32_t*)&retVals[1], (uint32_t*)&retVals[2], (uint32_t*)&retVals[3], (uint32_t*)&retVals[4], (uint32_t*)&retVals[5]);
+    uint32_t retvals[8];
+    GetLastVals((uint32_t*)&retvals[0], (uint32_t*)&retvals[1], (uint32_t*)&retvals[2], (uint32_t*)&retvals[3], (uint32_t*)&retvals[4], (uint32_t*)&retvals[5]);
+    
+    printf("\nCurrent last operation retvals: \n");
+    printf(" last '+' %x \n", retvals[0]);
+    printf(" last '-' %x \n", retvals[1]);
+    printf(" last '*' %x \n", retvals[2]);
+    printf(" last '/' %x \n", retvals[3]);
+    printf(" last '&' %x \n", retvals[4]);
+    printf(" last '|' %x \n", retvals[5]);
+}
+
+/************************************************************************************
+ * @name    PrintLastOperations 
+ * @brief   Print last operations from parent class
+ * @param   void
+ * @return  void
+*/
+void Children_class::PrintLastOperations2(void)
+{
+    struct values_t retvals = GetLastVals();
+
     printf("\nCurrent last operation values: \n");
-    printf(" last '+' %x \n", retVals[0]);
-    printf(" last '-' %x \n", retVals[1]);
-    printf(" last '*' %x \n", retVals[2]);
-    printf(" last '/' %x \n", retVals[3]);
-    printf(" last '&' %x \n", retVals[4]);
-    printf(" last '|' %x \n", retVals[5]);
+    printf(" last '+' %x \n", retvals.vadd);
+    printf(" last '-' %x \n", retvals.vsubb);
+    printf(" last '*' %x \n", retvals.vmull);
+    printf(" last '/' %x \n", retvals.vdiv);
+    printf(" last '&' %x \n", retvals.vand);
+    printf(" last '|' %x \n", retvals.vor);
 }
 
 #endif // CMP_X02_INHERITANCE_TEST_H

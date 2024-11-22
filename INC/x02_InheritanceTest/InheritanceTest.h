@@ -7,6 +7,16 @@
 #ifndef _INHERITANCE_TEST_H
 #define _INHERITANCE_TEST_H
 
+struct values_t
+{
+    uint32_t vadd;
+    uint32_t vsubb;
+    uint32_t vmull;
+    uint32_t vdiv;
+    uint32_t vand;
+    uint32_t vor;
+};
+
 //===================================================================================
 class Parrent_class
 {
@@ -30,6 +40,7 @@ public:
     uint32_t BoolOR(uint32_t inA, uint32_t inB);
 
     void GetLastVals(uint32_t* pAdd, uint32_t* pSubb, uint32_t* pMull, uint32_t* pDiv, uint32_t* pAnd, uint32_t* pOr);
+    struct values_t GetLastVals(void);
 };
 //===================================================================================
 class Children_class: private Parrent_class
@@ -37,6 +48,7 @@ class Children_class: private Parrent_class
 private:
     uint32_t valueToPrint;
     uint32_t retVals[8];
+    struct values_t _values;
 
 public:
     Children_class(uint32_t initValtoPrint, uint32_t initvalForLast);
@@ -50,7 +62,8 @@ public:
     void PrintOR(uint32_t inA, uint32_t inB);
 
     void PrintAll(uint32_t inA, uint32_t inB);
-    void PrintLastOperations(void);
+    void PrintLastOperations1(void);
+    void PrintLastOperations2(void);
 };
 //===================================================================================
 #endif // _INHERITANCE_TEST_H
