@@ -8,24 +8,23 @@
             "args": [
                 "--std=c++11",
                 "-g",
+                "${workspaceFolder}\\main.h",
                 "${workspaceFolder}\\INC\\x00_RefFunctions\\*.h",
                 "${workspaceFolder}\\INC\\x00_RefFunctions\\*.cpp",
-                "${workspaceFolder}\\INC\\x01_CTF_class\\*.h",
-                "${workspaceFolder}\\INC\\x01_CTF_class\\*.cpp",
+                "${workspaceFolder}\\INC\\x01_some_test\\*.h",
+                "${workspaceFolder}\\INC\\x01_some_test\\*.cpp",
                 "${workspaceFolder}\\INC\\x02_InheritanceTest\\*.h",
                 "${workspaceFolder}\\INC\\x02_InheritanceTest\\*.cpp",
                 "${workspaceFolder}\\INC\\x03_advance_theory_training\\*.h",
                 "${workspaceFolder}\\INC\\x03_advance_theory_training\\*.cpp",
+                "${workspaceFolder}\\INC\\x04_PID_controler\\*.h",
+                "${workspaceFolder}\\INC\\x04_PID_controler\\*.cpp",
                 "${file}",
                 "-o",
-                "${workspaceFolder}\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}\\xOutput\\${fileBasenameNoExtension}.exe"
             ],
-            "options": {
-                "cwd": "C:\\MinGW\\bin",
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "options": {"cwd": "C:\\MinGW\\bin",},
+            "problemMatcher": ["$gcc"],
             "group": {"kind": "build", "isDefault": true},
             "detail": "compiler: C:\\MinGW\\bin\\g++.exe"
         },
