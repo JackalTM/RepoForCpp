@@ -107,16 +107,16 @@ void CallConstantCast(void)
     int* pInt2 = const_cast<int*>(pInt1);
     *pInt2 = 0xFF; // Invalid and unefined behaviour
 
-    std::cout << "Value of i = " << i << std::endl; 
-    std::cout << "Value of *pInt2 = " << *pInt2 << std::endl;
+    std::cout << "Value of i = " << std::hex << i << std::endl; 
+    std::cout << "Value of *pInt2 = "<< std::hex << *pInt2 << std::endl;
 
     int j = 0x20;
     const int* pInt11 = &j;
     int* pInt22 = const_cast<int*>(pInt11);
     *pInt22 = 0xFF; //Valid code
 
-    std::cout << "Value of j = " << j << std::endl; 
-    std::cout << "Value of *pInt222 = " << *pInt22 << std::endl;
+    std::cout << "Value of j = "<< std::hex << j << std::endl; 
+    std::cout << "Value of *pInt222 = "<< std::hex << *pInt22 << std::endl;
 }
 //=====================================================================================
 
@@ -127,10 +127,34 @@ void CallConstantCast(void)
 template <typename T_1, typename T_2>
 auto add(T_1 a, T_2 b)->decltype(a + b)
 {   return a + b;}
+
+static void _PrintAdd(int a, int b)
+{
+    std::cout << "T_1 add(T_1, T_2) " << add(a, b) << std::endl; 
+    std::cout << "T_2 add(T_1, T_2) " << add(a, b) << std::endl;
+}
+static void _PrintAdd(double a, double b)
+{
+    std::cout << "T_1 add(T_1, T_2) " << add(a, b) << std::endl; 
+    std::cout << "T_2 add(T_1, T_2) " << add(a, b) << std::endl;
+}
+static void _PrintAdd(int a, double b)
+{
+    std::cout << "T_1 add(T_1, T_2) " << add(a, b) << std::endl; 
+    std::cout << "T_2 add(T_1, T_2) " << add(a, b) << std::endl;
+}
+static void _PrintAdd(double a, int b)
+{
+    std::cout << "T_1 add(T_1, T_2) " << add(a, b) << std::endl; 
+    std::cout << "T_2 add(T_1, T_2) " << add(a, b) << std::endl;
+}
+
 void CallDecltype(void)
 {
-    std::cout << "T_1 add(T_1 a, T_2) " << add(1, 1.8) << std::endl; 
-    std::cout << "T_2 add(T_1 a, T_2) " << add(1.8, 1) << std::endl; 
+    _PrintAdd(1, 5);
+    _PrintAdd(1.0, 5.0);
+    _PrintAdd(1, 5.0);
+    _PrintAdd(1.0, 5);
 }
 //=====================================================================================
 
@@ -240,8 +264,17 @@ void CallPureVirtualFunctions(void)
     Sword* pSword = new Sword();
     Rifle* pRifle = new Rifle();
 
+    Sword* pSword1;
+    Rifle* pRifle1;
+
     pSword->Usage(7);
     pRifle->Usage(9);
+
+    pRifle1 = (Rifle*)pSword;
+    pSword1 = (Sword*)pRifle;
+
+    pSword1->Usage(7);
+    pRifle1->Usage(9);
 }
 
 #endif // CMP_ADVANCE_PART_1_H
