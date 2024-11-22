@@ -183,7 +183,7 @@ Children_class::~Children_class()
 */
 void Children_class::PrintAdd(uint32_t inA, uint32_t inB)
 {
-    retVals[0] = Add(inA, inB);
+    retVals[0] = Parrent_class::Add(inA, inB);
     printf("RES: 0x%x + 0x%x = 0x%x \n", inA, inB, retVals[0]);
 }
 //===================================================================================
@@ -211,7 +211,7 @@ void Children_class::PrintSubb(uint32_t inA, uint32_t inB)
 */
 void Children_class::PrintMull(uint32_t inA, uint32_t inB)
 {
-    retVals[2] = Mull(inA, inB);
+    retVals[2] = Parrent_class::Mull(inA, inB);
     printf("RES: 0x%x * 0x%x = 0x%x \n", inA, inB, retVals[2]);
 }
 //===================================================================================
@@ -239,7 +239,7 @@ void Children_class::PrintDive(uint32_t inA, uint32_t inB)
 */
 void Children_class::PrintAND(uint32_t inA, uint32_t inB)
 {
-    retVals[4] = BoolAND(inA, inB);
+    retVals[4] = Parrent_class::BoolAND(inA, inB);
     printf("RES: 0x%x & 0x%x = 0x%x \n", inA, inB, retVals[4]);
 }
 //===================================================================================
